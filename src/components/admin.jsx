@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Import CSS untuk styling toast
+import { useEffect } from 'react';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 const AdminDashboard = () => {
+  const API_BASE_URL = 'http://localhost:5000';
   const [campSites, setCampSites] = useState({
     Bali: [
       {
@@ -45,7 +48,31 @@ const AdminDashboard = () => {
       },
     ],
   });
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  // testing API
+  useEffect(() => {
+    const fetchTempatKemah = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/tempat_kemah`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const result = await response.json();
+        setData(result.data);
+        console.log(data)
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    fetchTempatKemah();
+  }, []);
+
+  //
   const [selectedLocation, setSelectedLocation] = useState('Bali');
   const [newCamp, setNewCamp] = useState({
     name: '',
@@ -150,6 +177,17 @@ const AdminDashboard = () => {
 
         {/* Daftar Camp Sites */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <ul>
+        {data.map((item) => (
+          <li key={item.id}>
+            <h2>{item.nama}</h2>
+            <img src={item.gambar} alt={item.nama} style={{ width: '200px' }} />
+            <p>{item.deskripsi}</p>
+            <p>Harga: {item.harga}</p>
+            <p>Fasilitas: {item.fasilitas}</p>
+          </li>
+        ))}
+      </ul>
           {campSites[selectedLocation].map((camp, index) => (
             <div
               key={index}

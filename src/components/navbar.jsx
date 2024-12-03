@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import Swal from 'sweetalert2'; // Import SweetAlert2
+import 'sweetalert2/dist/sweetalert2.min.css'; // Import CSS SweetAlert2
 
 const Navbar = () => {
   const [activePage, setActivePage] = useState('');
@@ -11,7 +13,7 @@ const Navbar = () => {
   useEffect(() => {
     const savedActivePage = localStorage.getItem('activePage') || 'dashboard';
     if (location.pathname === '/login' || location.pathname === '/admin') {
-      setActivePage(''); // Tidak ada highlight untuk halaman login dan admin
+      setActivePage('');
     } else {
       setActivePage(savedActivePage);
     }
@@ -25,20 +27,23 @@ const Navbar = () => {
 
   // Fungsi untuk logout
   const handleLogout = () => {
-    const confirmLogout = window.confirm('Apakah Anda yakin ingin logout?');
-    if (confirmLogout) {
-      // Tampilkan toast success
-      toast.success('Anda berhasil logout!')
-
-      // Hapus halaman aktif dari localStorage
-      localStorage.removeItem('activePage');
-
-      // Hapus highlight biru
-      setActivePage('');
-
-      // Redirect ke halaman login
-      navigate('/login');
-    }
+    Swal.fire({
+      title: 'Konfirmasi Logout',
+      text: 'Apakah Anda yakin ingin logout?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Ya, Logout',
+      cancelButtonText: 'Batal',
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        toast.success('Anda berhasil logout!');
+        localStorage.removeItem('activePage');
+        setActivePage('');
+        navigate('/login');
+      }
+    });
   };
 
   // Cek apakah saat ini berada di halaman login atau admin
@@ -53,8 +58,8 @@ const Navbar = () => {
           {/* Jika di halaman admin, hanya tampilkan opsi Update */}
           {isAdminPage ? (
             <Link
-              to="/login"
-              onClick={() => handleSetActivePage('logout')}
+              // to="/login"
+              onClick={() => handleLogout('logout')}
               className={`${
                 activePage === 'admin' ? 'text-blue-500' : 'text-gray-300'
               } hover:text-blue-400`}
