@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './components/Login';
+// import Login from './components/Login2';
 // import Dashboard from './components/dashboard'; 
 import Dashboard from './components/dashboard2'; 
 import Booking from './components/booking'; 

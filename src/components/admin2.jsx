@@ -4,7 +4,7 @@ import toastr from 'toastr';
 import 'toastr/build/toastr.min.css'; // Impor CSS Toastr
 import Swal from 'sweetalert2'; // Impor SweetAlert2
 
-const API_BASE_URL = 'http://localhost:5000'; // Ganti dengan URL backend Anda
+const API_BASE_URL = 'https://wecamp-be.vercel.app'; // Ganti dengan URL backend Anda
 
 const Admin2 = () => {
   const [tempatKemah, setTempatKemah] = useState([]);

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// UNUSED FILE
+
 const Dashboard = () => {
   const [location, setLocation] = useState('');
   const [recommendations, setRecommendations] = useState([]);

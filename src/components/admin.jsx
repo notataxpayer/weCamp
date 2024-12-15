@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
+// UNUSED FILE
+
 const AdminDashboard = () => {
   const API_BASE_URL = 'http://localhost:5000';
   const [campSites, setCampSites] = useState({

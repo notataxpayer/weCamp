@@ -3,7 +3,7 @@ import axios from 'axios';
 import 'font-awesome/css/font-awesome.min.css';
 
 
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = 'https://wecamp-be.vercel.app';
 
 const Dashboard = () => {
     const [allData, setAllData] = useState([]); // Semua data tempat kemah

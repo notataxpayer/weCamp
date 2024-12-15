@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer,toast } from 'react-toastify';
 
+// TEMP USED
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
-  // Hardcoded credentials
+  // LOGIN CREDS! USE HERE FEEL FREE
   const hardcodedUsernameUser = 'user';
   const hardcodedPasswordUser = 'user';
   const hardcodedUsernameAdmin = 'admin';
@@ -16,19 +18,16 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Verifikasi username dan password
+    // STILL EXPLOITABLE
     if (email === hardcodedUsernameUser && password === hardcodedPasswordUser) {
-      // Jika username user, navigasi ke /dashboard
       navigate('/dashboard');
     } else if (email === hardcodedUsernameAdmin && password === hardcodedPasswordAdmin) {
-      // Jika username admin, navigasi ke /admin
       navigate('/admin');
     } else if(email === "" || password === ""){
       toast.error('Mohon isi semua data yang diperlukan')
     } 
     else {
-      // Jika login gagal
+      // FAIL LOGIN
       toast.error('Mohon isi semua data yang diperlukan')
     }
   };
