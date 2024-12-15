@@ -25,6 +25,16 @@ const Dashboard = () => {
         return `Rp ${harga.toLocaleString('id-ID')}`;  // Format angka dengan pemisah ribuan untuk Indonesia
     };
 
+
+    const getTodayDate = () => {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0'); 
+        const day = String(today.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
+
+
     // Ambil semua data ketika komponen pertama kali dimuat
     useEffect(() => {
         const fetchData = async () => {

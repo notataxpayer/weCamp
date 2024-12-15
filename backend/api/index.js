@@ -15,7 +15,7 @@ const port = 5000;
 // Setup Supabase
 const supabase = createClient(supabaseUrl, supabaseKey);
 app.use(cors({
-  origin: 'http://localhost:5173',  // Sesuaikan dengan frontend Anda
+  origin: 'https://we-camp.vercel.app',  // Sesuaikan dengan frontend Anda
   methods: 'GET,POST',
   credentials: true,
 }));
