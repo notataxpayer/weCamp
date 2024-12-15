@@ -1,3 +1,5 @@
+FEEL FREE TO USE THIS REPOSITORY, EVERYTHING IN THIS REPOSITORY IS ACCESSABLE (U MAY USE IT OR CHANGE IT)
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
